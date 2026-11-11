@@ -30,25 +30,28 @@
 
 ## 모델
 
-두 가지 방식을 학습했고, 앱에는 분류 모델을 적용했습니다.
+두 가지 방식을 학습했고, 앱에는 분류 모델 방식을 적용했습니다.
 
-| | 탐지 모델 (실험) | 분류 모델 (앱 적용) |
+| | 탐지 모델 (실험) | 분류 모델 (앱 적용 방식) |
 |---|---|---|
-| 구조 | YOLOv5l | EfficientNet-Lite4 (TFLite Model Maker) |
-| 클래스 | 11종 | 15종 |
-| 데이터 | 학습 632장 / 검증 38장 | 1,253장 → 학습 1,127 / 검증 63 / 테스트 63 |
-| 결과 | mAP50 0.681, mAP50-95 0.385 | 테스트 정확도 92% |
+| 구조 | YOLOv5l | EfficientNet-Lite4 (MediaPipe Model Maker) |
+| 클래스 | 11종 | 10종 |
+| 데이터 | 학습 632장 / 검증 38장 | 843장 → 학습 674 / 검증 85 / 테스트 84 |
+| 결과 | mAP50 0.681, mAP50-95 0.385 | 테스트 정확도 92.9% (78/84), 검증 정확도 95.3% |
 | TFLite 크기 | 88.2MB (FP16) | 46.8MB (FP32) |
 | 앱 적용 | 미적용 | 적용 |
 
-- **탐지 모델**: YOLOv5l을 50 epoch 학습하고 TFLite로 변환했습니다. 모델 크기와 검증 정확도를 고려해 앱에는 적용하지 않았습니다. 학습 노트북과 상세 수치는 [`notebooks/`](notebooks/)에 있습니다.
-- **분류 모델**: ImageNet 사전학습 EfficientNet-Lite4를 15종 식재료(사과, 바나나, 양배추, 당근, 옥수수, 오이, 가지, 마늘, 양파, 오렌지, 감자, 무, 대두, 고구마, 토마토)로 전이학습했습니다. 입력 300×300.
-- 데이터는 직접 촬영한 사진과 Kaggle 공개 이미지를 합쳐 구성했습니다.
+두 모델의 학습 노트북과 실행 로그는 [`notebooks/`](notebooks/)에 있습니다.
+
+- **탐지 모델**: YOLOv5l을 50 epoch 학습하고 TFLite로 변환했습니다. 모델 크기와 검증 정확도를 고려해 앱에는 적용하지 않았습니다.
+- **분류 모델**: ImageNet 사전학습 EfficientNet-Lite4의 백본은 고정하고 분류층만 50 epoch 학습했습니다. 입력 300×300, 10종(사과, 바나나, 당근, 옥수수, 오이, 마늘, 레몬, 양파, 감자, 토마토).
+- 분류 모델은 클래스 구성을 바꿔가며 여러 번 학습했습니다. 졸업 발표 자료에는 15종 구성(1,253장, 테스트 정확도 92%)이 실려 있고, 저장소의 노트북은 10종 구성의 실행 기록입니다.
+- 분류 데이터는 Kaggle 공개 데이터셋(Fruits and Vegetables Image Recognition)의 이미지를 사용했습니다.
 
 ### 한계
 
-- 테스트 정확도 92%는 63장 기준 수치입니다. 표본이 작아 실사용 환경의 성능을 대표한다고 보기 어렵습니다.
-- 학습 데이터셋 원본은 현재 보관되어 있지 않아 같은 조건으로 재측정할 수 없습니다.
+- 테스트 정확도는 84장 기준 수치입니다. 표본이 작고, 학습 데이터와 같은 출처에서 무작위로 나눈 것이라 실사용 환경의 성능을 대표한다고 보기 어렵습니다.
+- 분할에 시드를 고정하지 않아 같은 테스트 세트를 그대로 재현할 수는 없습니다.
 - 분류 모델은 양자화하지 않은 FP32 상태입니다. 실기기 지연 시간과 메모리 사용량은 측정하지 않았습니다.
 
 ## 레시피 데이터
@@ -65,7 +68,7 @@ lib/
 ├── screen/                  # 홈, 인식 재료 확인, 재료 직접 추가, 레시피 목록
 ├── data/                    # 내장 레시피, 초기 재료 목록
 └── const/                   # 공통 UI
-notebooks/                   # YOLOv5l 학습·TFLite 변환 노트북
+notebooks/                   # YOLOv5l, EfficientNet-Lite4 학습 노트북
 ```
 
 ## 실행 방법
@@ -82,4 +85,4 @@ notebooks/                   # YOLOv5l 학습·TFLite 변환 노트북
 
 ## 기술 스택
 
-Flutter · Google ML Kit Object Detection · TensorFlow Lite · TFLite Model Maker · YOLOv5 (PyTorch) · Firebase (Cloud Firestore)
+Flutter · Google ML Kit Object Detection · TensorFlow Lite · MediaPipe Model Maker · YOLOv5 (PyTorch) · Firebase (Cloud Firestore)
