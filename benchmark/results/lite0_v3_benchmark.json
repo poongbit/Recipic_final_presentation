@@ -1,0 +1,246 @@
+{
+  "model": "recipic_lite0_v3.tflite",
+  "labels": [
+    "apple",
+    "banana",
+    "carrot",
+    "corn",
+    "cucumber",
+    "garlic",
+    "lemon",
+    "onion",
+    "potato",
+    "tomato"
+  ],
+  "input_size": 224,
+  "preprocess": "center_crop",
+  "eval_split": "test",
+  "eval_images": 777,
+  "eval_per_class": {
+    "apple": 90,
+    "banana": 32,
+    "carrot": 24,
+    "corn": 107,
+    "cucumber": 93,
+    "garlic": 44,
+    "lemon": 120,
+    "onion": 112,
+    "potato": 35,
+    "tomato": 120
+  },
+  "duplicates_removed": 0,
+  "missing_classes": [],
+  "calibration_images": 200,
+  "notes": {},
+  "environment": {
+    "date": "2026-11-11 09:02",
+    "machine": "x86_64",
+    "processor": "x86_64",
+    "os": "Linux 6.6.159+",
+    "python": "3.13.16",
+    "cpu_count": 2,
+    "threads": 1,
+    "ai-edge-litert": "2.3.0",
+    "litert-quantizer": "0.11.0"
+  },
+  "results": {
+    "fp32": {
+      "file": "/content/v3b_out/recipic_lite0_v3.tflite",
+      "size_mb": 13.568401,
+      "input_dtype": "float32",
+      "correct": 680,
+      "total": 777,
+      "accuracy": 0.8751608751608752,
+      "agreement_with_fp32": 1.0,
+      "latency_ms": {
+        "mean": 12.727939160022288,
+        "p50": 12.287582500221106,
+        "p90": 13.59674420000374
+      },
+      "per_class": {
+        "apple": {
+          "n": 90,
+          "correct": 83,
+          "accuracy": 0.9222222222222223
+        },
+        "banana": {
+          "n": 32,
+          "correct": 20,
+          "accuracy": 0.625
+        },
+        "carrot": {
+          "n": 24,
+          "correct": 22,
+          "accuracy": 0.9166666666666666
+        },
+        "corn": {
+          "n": 107,
+          "correct": 101,
+          "accuracy": 0.9439252336448598
+        },
+        "cucumber": {
+          "n": 93,
+          "correct": 82,
+          "accuracy": 0.8817204301075269
+        },
+        "garlic": {
+          "n": 44,
+          "correct": 40,
+          "accuracy": 0.9090909090909091
+        },
+        "lemon": {
+          "n": 120,
+          "correct": 116,
+          "accuracy": 0.9666666666666667
+        },
+        "onion": {
+          "n": 112,
+          "correct": 87,
+          "accuracy": 0.7767857142857143
+        },
+        "potato": {
+          "n": 35,
+          "correct": 28,
+          "accuracy": 0.8
+        },
+        "tomato": {
+          "n": 120,
+          "correct": 101,
+          "accuracy": 0.8416666666666667
+        }
+      }
+    },
+    "weights_int8": {
+      "file": "/content/v3b_out/results_indep_v3/models/recipic_lite0_v3_weights_int8.tflite",
+      "size_mb": 3.796809,
+      "input_dtype": "float32",
+      "correct": 682,
+      "total": 777,
+      "accuracy": 0.8777348777348777,
+      "agreement_with_fp32": 0.9755469755469756,
+      "latency_ms": {
+        "mean": 32.986975380008516,
+        "p50": 32.582294500116404,
+        "p90": 34.58526590002293
+      },
+      "per_class": {
+        "apple": {
+          "n": 90,
+          "correct": 86,
+          "accuracy": 0.9555555555555556
+        },
+        "banana": {
+          "n": 32,
+          "correct": 19,
+          "accuracy": 0.59375
+        },
+        "carrot": {
+          "n": 24,
+          "correct": 23,
+          "accuracy": 0.9583333333333334
+        },
+        "corn": {
+          "n": 107,
+          "correct": 102,
+          "accuracy": 0.9532710280373832
+        },
+        "cucumber": {
+          "n": 93,
+          "correct": 82,
+          "accuracy": 0.8817204301075269
+        },
+        "garlic": {
+          "n": 44,
+          "correct": 39,
+          "accuracy": 0.8863636363636364
+        },
+        "lemon": {
+          "n": 120,
+          "correct": 116,
+          "accuracy": 0.9666666666666667
+        },
+        "onion": {
+          "n": 112,
+          "correct": 86,
+          "accuracy": 0.7678571428571429
+        },
+        "potato": {
+          "n": 35,
+          "correct": 28,
+          "accuracy": 0.8
+        },
+        "tomato": {
+          "n": 120,
+          "correct": 101,
+          "accuracy": 0.8416666666666667
+        }
+      }
+    },
+    "full_int8": {
+      "file": "/content/v3b_out/results_indep_v3/models/recipic_lite0_v3_full_int8.tflite",
+      "size_mb": 4.052553,
+      "input_dtype": "int8",
+      "correct": 683,
+      "total": 777,
+      "accuracy": 0.879021879021879,
+      "agreement_with_fp32": 0.972972972972973,
+      "latency_ms": {
+        "mean": 14.464921019998656,
+        "p50": 14.39830549998078,
+        "p90": 15.260687600357414
+      },
+      "per_class": {
+        "apple": {
+          "n": 90,
+          "correct": 86,
+          "accuracy": 0.9555555555555556
+        },
+        "banana": {
+          "n": 32,
+          "correct": 20,
+          "accuracy": 0.625
+        },
+        "carrot": {
+          "n": 24,
+          "correct": 23,
+          "accuracy": 0.9583333333333334
+        },
+        "corn": {
+          "n": 107,
+          "correct": 102,
+          "accuracy": 0.9532710280373832
+        },
+        "cucumber": {
+          "n": 93,
+          "correct": 81,
+          "accuracy": 0.8709677419354839
+        },
+        "garlic": {
+          "n": 44,
+          "correct": 38,
+          "accuracy": 0.8636363636363636
+        },
+        "lemon": {
+          "n": 120,
+          "correct": 116,
+          "accuracy": 0.9666666666666667
+        },
+        "onion": {
+          "n": 112,
+          "correct": 88,
+          "accuracy": 0.7857142857142857
+        },
+        "potato": {
+          "n": 35,
+          "correct": 28,
+          "accuracy": 0.8
+        },
+        "tomato": {
+          "n": 120,
+          "correct": 101,
+          "accuracy": 0.8416666666666667
+        }
+      }
+    }
+  }
+}
